@@ -46,8 +46,8 @@
 
 1. postfix 서버 설정
 
-    1. [OpenDMARC](20-opendmarc.md)
-    1. [OpenDKIM](21-opendkim.md)
+    1. [OpenDMARC](30-opendmarc.md)
+    1. [OpenDKIM](31-opendkim.md)
     1. [SpamAssassin : 스팸 필터 설정](32-spamassassin.md)
     1. [Amavis : 스팸 필터 설정](38-amavisd.md)
     1. [Postfix : 메일 서버 설정](39-postfix.md)
