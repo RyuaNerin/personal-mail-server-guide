@@ -30,3 +30,8 @@
     |Login type|Plain Password|
     |ID|`mail`|
     |Password|`...`|
+
+1. 다양한 메일 테스트 서비스를 이용해보세요
+
+    - [mail-tester](https://www.mail-tester.com/)
+    - [m@ilgenius](https://www.mailgenius.com/)

@@ -9,6 +9,7 @@
     | Name            | Type | Data                           |
     |----------------:|:----:|--------------------------------|
     |      `ryuar.in` | TXT  | `v=spf1 a mx -all`             |
+    | `mail.ryuar.in` | TXT  | `v=spf1 include:ryuar.in -all` |
     |    `ryuaner.in` | TXT  | `v=spf1 include:ryuar.in -all` |
     | `rryuanerin.kr` | TXT  | `v=spf1 include:ryuar.in -all` |
 

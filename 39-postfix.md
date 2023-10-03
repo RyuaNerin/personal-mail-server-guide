@@ -107,7 +107,7 @@
     (...)
 
     #myhostname = virtual.domain.tld
-    myhostname = ryuar.in
+    myhostname = mail.ryuar.in
 
     (...)
 

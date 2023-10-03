@@ -24,9 +24,9 @@
 
     #@local_domains_maps = ( [".$mydomain"] );  # list of all local domains
     @local_domains_maps = ( [".$mydomain", "$mydomain", "ryuanerin.kr", ".ryuanerin.kr"] );
-    dkim_key('ryuanerin.kr', 'myselector', '/etc/opendkim/myselector.private');
-    dkim_key(  'ryuaner.in', 'myselector', '/etc/opendkim/myselector.private');
-    dkim_key(    'ryuar.in', 'myselector', '/etc/opendkim/myselector.private');
+    dkim_key('ryuanerin.kr', 'mail2048', '/etc/opendkim/mail2048.private');
+    dkim_key(  'ryuaner.in', 'mail2048', '/etc/opendkim/mail2048.private');
+    dkim_key(    'ryuar.in', 'mail2048', '/etc/opendkim/mail2048.private');
     @dkim_signature_options_bysender_maps = (
         { 'ryuanerin.kr' => { ttl => 21*24*3600, c => 'relaxed/simple' } },
         {   'ryuaner.in' => { ttl => 21*24*3600, c => 'relaxed/simple' } },

@@ -8,8 +8,8 @@
     # /etc/opendkim/opendkim.conf
     BaseDirectory           /var/lib/opendkim
     Domain                  ryuar.in
-    KeyFile                 /etc/opendkim/myselector.private
-    Selector                myselector
+    KeyFile                 /etc/opendkim/mail2048.private
+    Selector                mail2048
     Socket                  local:/run/opendkim/opendkim.sock
     Syslog                  Yes
     TemporaryDirectory      /run/opendkim
@@ -27,30 +27,31 @@
 1. 키 생성
 
     ```sh
-    opendkim-genkey -r -s myselector -d ryuar.in
+    opendkim-genkey -r -b 2048 -D /etc/opendkim -s mail2048 --subdomains -d ryuar.in
     ```
 
-1. `myselector.txt` 확인
+1. `/etc/opendkim/mail2048.txt` 확인
 
     ```txt
-    # cat /etc/opendkim/myselector.txt
-    myselector._domainkey   IN      TXT     ( "v=DKIM1; k=rsa; s=email; "
-            "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDr4x55IEi26Yft6/U/H+wGw3z/VwrVboDKCPZ4ctKz0h2ELpya+wJ2rEw2TIzAnGB8Lw5KqjirHkE/4TvPAw434urVckqFSocSqeiHIcOofA6uORH9ieTVUGJ0WXe06abaZ1EoHoWeTrczfgPPf+GmIlBUgQj1QVWhJc4e2hUKmQIDAQAB" )  ; ----- DKIM key myselector for ryuar.in
+    # cat /etc/opendkim/mail2048.txt
+    mail2048._domainkey     IN      TXT     ( "v=DKIM1; k=rsa; s=email; "
+        "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuwCHmIoMxHk3cArugm9pCbU/WM1EQm+f2L69PsiJOPEnApMe5zR9mSQwXdfSxuPjeBBLtB/mnNL4gS8E/SqLIFQCGP109uPgv5wGjuXqocnTG+vsQA+jITg8MN9QlwhpAZ7uDwmWf0pknCt9qmOZYCNImGW73NUlGxWHp0rdmV/XGpPCjXjppPEnVFLpJcnADlUnmMF9E2K6ER"
+        "/YQUH3m7OJKav9ssCKZFrUWz/iurRGD1nDCpU4etUdHrSRHrhY0bct8RcGqpDg5Q+qxNAZoB0eJuiKsIhplUnOzWO27l1p9kcUO9YkjVhPOpx5OnWHVCIAFiySlZUlgC14y2jaAwIDAQAB" )  ; ----- DKIM key mail2048 for ryuar.in
     ```
 
 1. DNS 설정
 
-    | Name                             | Type | Data                                |
-    |---------------------------------:|:----:|-------------------------------------|
-    |      `_adsp._domainkey.ryuar.in` | TXT  | `dkim=all`                          |
-    | `myselector._domainkey.ryuar.in` | TXT  | `v=DKIM1; k=rsa; s=email;p=.......` |
+    | Name                           | Type | Data                                |
+    |-------------------------------:|:----:|-------------------------------------|
+    |    `_adsp._domainkey.ryuar.in` | TXT  | `dkim=all`                          |
+    | `mail2048._domainkey.ryuar.in` | TXT  | `v=DKIM1; k=rsa; s=email;p=.......` |
 
 1. 권한 설정
 
     ```sh
     chown opendkim:postfix -R /etc/opendkim
     chmod g+rx /etc/opendkim
-    chmod g+r /etc/opendkim/myselector.private
+    chmod g+r /etc/opendkim/mail2048.private
     ```
 
 1. opendmarc 데몬 설정 작성
