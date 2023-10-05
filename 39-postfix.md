@@ -131,7 +131,8 @@
         localhost,
         ryuar.in,
         ryuaner.in,
-        ryuanerin.kr
+        ryuanerin.kr,
+        mail.ryuar.in
 
     (...)
 
