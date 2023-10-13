@@ -15,6 +15,7 @@
 
     ```sh
     useradd acme --home-dir /etc/acme --create-home --shell /usr/bin/nologin
+    ln -s /etc/acme /etc/acme/.acme.sh
     ```
 
 1. 인증서 발급

@@ -52,9 +52,11 @@
     chown opendkim:postfix -R /etc/opendkim
     chmod g+rx /etc/opendkim
     chmod g+r /etc/opendkim/mail2048.private
+
+    cat /dev/null > /usr/lib/tmpfiles.d/opendkim.conf # 재부팅 후에 권한 초기화 되지 않도록.
     ```
 
-1. opendmarc 데몬 설정 작성
+1. opendkim 데몬 설정 작성
 
     ```txt
     # /etc/systemd/system/opendkim.service

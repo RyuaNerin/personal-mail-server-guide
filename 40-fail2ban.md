@@ -7,14 +7,6 @@
     ```conf
     (...)
 
-    #loglevel = INFO
-    loglevel = STDERR
-
-    (...)
-
-    logtarget = /var/log/fail2ban.log
-
-
     #dbpurgeage = 1d
     dbpurgeage = 7d
 

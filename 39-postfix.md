@@ -77,28 +77,34 @@
     policy-spf unix -       n       n       -       -       spawn
       user=nobody argv=/usr/lib/postfix/postfix-policyd-spf-perl
 
-    smtp-amavis  unix  -    -       y       -       1       smtp
-      -o syslog_name=postfix/amavis
-      -o smtp_data_done_timeout=1200
-      -o disable_dns_lookups=yes
-      -o smtp_send_xforward_command=yes
+    amavisfeed unix  -    -       y       -       1       smtp
+    -o syslog_name=postfix/amavisfeed
+    -o smtp_data_done_timeout=1200
+    -o disable_dns_lookups=yes
+    -o smtp_send_xforward_command=yes
 
     127.0.0.1:10025 inet n  -       y       -       -       smtpd
-      -o syslog_name=postfix/amavis-re
-      -o content_filter=
-      -o smtpd_helo_restrictions=
-      -o smtpd_sender_restrictions=
-      -o smtpd_recipient_restrictions=permit_mynetworks,reject
-      -o mynetworks=127.0.0.0/8
-      -o smtpd_error_sleep_time=0
-      -o smtpd_soft_error_limit=1001
-      -o smtpd_hard_error_limit=1000
-      -o receive_override_options=no_header_body_checks
-      -o smtpd_helo_required=no
-      -o smtpd_client_restrictions=
-      -o smtpd_restriction_classes=
-      -o disable_vrfy_command=no
-      -o strict_rfc821_envelopes=yes
+    -o syslog_name=postfix/amavis-re
+    -o content_filter=
+    -o smtpd_helo_restrictions=
+    -o smtpd_sender_restrictions=
+    -o smtpd_client_connection_count_limit=0
+    -o smtpd_client_connection_rate_limit=0
+    -o smtpd_end_of_data_restrictions=
+    -o smtpd_recipient_restrictions=permit_mynetworks,reject
+    -o smtpd_data_restrictions=reject_unauth_pipelining
+    -o smtpd_delay_reject=no
+    -o mynetworks=127.0.0.0/8
+    -o smtpd_error_sleep_time=0
+    -o smtpd_soft_error_limit=1001
+    -o smtpd_hard_error_limit=1000
+    -o receive_override_options=no_header_body_checks,no_unknown_recipient_checks,no_milters
+    -o smtpd_helo_required=no
+    -o smtpd_client_restrictions=permit_mynetworks,reject
+    -o smtpd_restriction_classes=
+    -o disable_vrfy_command=no
+    -o local_header_rewrite_clients=
+
     ```
 
 1. `main.cf`
