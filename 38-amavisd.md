@@ -75,6 +75,9 @@
     [Service]
     Group=
     Group=postfix
+    
+    Restart=always
+    RestartSec=5s
     ```
 
 1. 데몬 활성화 및 실행
